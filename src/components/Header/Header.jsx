@@ -4,10 +4,10 @@ export const Header = () => {
         <HeaderStyled>
             <UlStyled>
                 <LiStyled>
-                    <LinkStyled href="/">Home</LinkStyled>
+                    <LinkStyled to="/">Home</LinkStyled>
                 </LiStyled>
                 <LiStyled>
-                    <LinkStyled href="/movies">Movies</LinkStyled>
+                    <LinkStyled to="/movies">Movies</LinkStyled>
                 </LiStyled>
             </UlStyled>
         </HeaderStyled>

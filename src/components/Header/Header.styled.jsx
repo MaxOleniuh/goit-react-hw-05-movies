@@ -1,4 +1,5 @@
 import s from "@emotion/styled";
+import { NavLink } from "react-router-dom";
 
 export const HeaderStyled = s.header `
     box-shadow: 0px 1px 6px 0px rgba(97,97,97,1);
@@ -13,7 +14,7 @@ export const UlStyled = s.ul `
 export const LiStyled = s.li `
 
 `
-export const LinkStyled = s.a `
+export const LinkStyled = s(NavLink) `
    font-size: 18px;
    font-weight: 500;
    text-decoration: none;
