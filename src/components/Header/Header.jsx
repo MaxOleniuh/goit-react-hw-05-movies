@@ -7,7 +7,7 @@ export const Header = () => {
                     <LinkStyled href="/">Home</LinkStyled>
                 </LiStyled>
                 <LiStyled>
-                    <LinkStyled href="/">Movies</LinkStyled>
+                    <LinkStyled href="/movies">Movies</LinkStyled>
                 </LiStyled>
             </UlStyled>
         </HeaderStyled>
