@@ -1,11 +1,13 @@
 import { useState } from "react";
+import { useParams, useNavigate } from 'react-router-dom';
 export const MoviesForm = ({setQueryValue}) => {
     const [input, setInput] = useState('');
-
+    const navigate = useNavigate();
     const handleSubmit = e => {
         e.preventDefault();
         setQueryValue(input);
-        console.log(input)
+        navigate(`/movies/?query=${input}`);
+
     }
     return (
         <form action="submit" onSubmit={handleSubmit}>

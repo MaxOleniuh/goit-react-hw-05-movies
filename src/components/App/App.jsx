@@ -1,5 +1,5 @@
 import  React from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { fetchTrendingMoviesApi, fetchKeyMoviesApi } from 'services/moviesApi';
 import { HomePage } from 'components/HomePage/HomePage';
@@ -31,7 +31,6 @@ export const App = () => {
   useEffect(() => {
     getMovies();
   }, [])
-
   const getKeyMovies = async (query) => {
     setLoader(true);
     try {
@@ -52,7 +51,6 @@ export const App = () => {
    const setQueryValue = (query) => {
     setQuery(query);
      setKeyMovies([]);
-     console.log('my', query)
   }
 
   return (
@@ -60,7 +58,7 @@ export const App = () => {
       <Header />
       <Routes>
         <Route path={'/'} element={<HomePage movies={movies} />} />
-        <Route path={'/movies'} element={
+        <Route path={'movies'} element={
           <React.Fragment>
             <MoviesForm setQueryValue={setQueryValue} query={query} />
             <KeyMovies keyMovies={keyMovies} />

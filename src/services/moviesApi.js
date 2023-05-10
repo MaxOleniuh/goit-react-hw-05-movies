@@ -15,18 +15,16 @@ export const fetchTrendingMoviesApi = async () => {
     console.log(error);
   }
 };
-//  /search/search-movies
 
 export const fetchKeyMoviesApi = async query => {
   try {
-    const response = await axios.get('/search/keyword', {
+    const response = await axios.get('/search/movie', {
       params: {
         api_key: API_KEY,
         query: query,
       },
     });
     return response.data.results;
-    //response.data.results(has 'id')
   } catch (error) {
     console.log(error);
   }
