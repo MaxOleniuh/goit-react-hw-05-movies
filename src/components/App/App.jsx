@@ -1,7 +1,8 @@
+import { Route, Routes } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 import { fetchMoviesApi } from 'services/moviesApi';
 import { HomePage } from 'components/HomePage/HomePage';
 import { Header } from 'components/Header/Header';
-import { useEffect, useState } from 'react';
 import { Loader } from 'components/Loader/Loader';
 
 export const App = () => {
@@ -25,11 +26,14 @@ export const App = () => {
   useEffect(() => {
     getMovies();
   }, [])
+
   return (
     <>
       <Header />
-      {loader && <Loader/>}
-      <HomePage movies={movies} />
+      <Routes>
+        <Route path={'/'} element={ <HomePage movies={movies} />} />
+      </Routes>
+      {loader && <Loader />}
     </>
   );
 };

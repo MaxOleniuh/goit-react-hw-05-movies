@@ -1,14 +1,15 @@
+import { UlStyled, HeaderStyled, LiStyled, LinkStyled } from "./Header.styled"
 export const Header = () => {
     return (
-        <header>
-            <ul>
-                <li>
-                    <a href="/">Home</a>
-                </li>
-                <li>
-                    <a href="/">Movies</a>
-                </li>
-            </ul>
-        </header>
+        <HeaderStyled>
+            <UlStyled>
+                <LiStyled>
+                    <LinkStyled href="/">Home</LinkStyled>
+                </LiStyled>
+                <LiStyled>
+                    <LinkStyled href="/">Movies</LinkStyled>
+                </LiStyled>
+            </UlStyled>
+        </HeaderStyled>
     )
 }
