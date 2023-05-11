@@ -1,4 +1,4 @@
-import  React from 'react';
+import React from 'react';
 import { Route, Routes, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { fetchTrendingMoviesApi, fetchKeyMoviesApi } from 'services/moviesApi';
@@ -8,6 +8,7 @@ import { Loader } from 'components/Loader/Loader';
 import { NotFound } from 'components/NotFound/NotFound';
 import { MoviesForm } from 'components/MoviesForm/MoviesForm';
 import { KeyMovies } from 'components/KeyMovies/KeyMovies';
+import { MovieDetails } from 'components/MovieDetails/MovieDetails';
 
 export const App = () => {
   const [movies, setMovies] = useState([]);
@@ -20,51 +21,52 @@ export const App = () => {
     try {
       const data = await fetchTrendingMoviesApi();
       setMovies([...movies, ...data]);
-    }
-    catch (error) {
+    } catch (error) {
       console.log(error);
-    }
-    finally {
+    } finally {
       setLoader(false);
     }
   };
   useEffect(() => {
     getMovies();
-  }, [])
-  const getKeyMovies = async (query) => {
+  }, []);
+  const getKeyMovies = async query => {
     setLoader(true);
     try {
       const data = await fetchKeyMoviesApi(query);
       setKeyMovies([...keyMovies, ...data]);
-    }
-    catch (error) {
+    } catch (error) {
       console.log(error);
-    }
-    finally {
+    } finally {
       setLoader(false);
     }
   };
   useEffect(() => {
-     getKeyMovies(query);
-  }, [query]) 
+    getKeyMovies(query);
+  }, [query]);
 
-   const setQueryValue = (query) => {
+  const setQueryValue = query => {
     setQuery(query);
-     setKeyMovies([]);
-  }
+    setKeyMovies([]);
+  };
 
   return (
     <>
       <Header />
       <Routes>
-        <Route path={'/'} element={<HomePage movies={movies} />} />
-        <Route path={'movies'} element={
-          <React.Fragment>
-            <MoviesForm setQueryValue={setQueryValue} query={query} />
-            <KeyMovies keyMovies={keyMovies} />
-          </React.Fragment>
-        }/>
-        <Route path='*' element={<NotFound/>} />
+        <Route path="/" element={<HomePage movies={movies} />} />
+        <Route
+          path="movies"
+          element={
+            <React.Fragment>
+              <MoviesForm setQueryValue={setQueryValue} query={query} />
+              <KeyMovies keyMovies={keyMovies} />
+            </React.Fragment>
+          }
+        >
+          <Route path="movies/1" element={<MovieDetails />} />
+        </Route>
+        <Route path="*" element={<NotFound />} />
       </Routes>
       {loader && <Loader />}
     </>

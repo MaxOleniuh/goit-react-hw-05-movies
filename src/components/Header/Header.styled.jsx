@@ -13,16 +13,5 @@ export const UlStyled = s.ul `
 `
 export const LiStyled = s.li `
 
-`
-export const LinkStyled = s(NavLink) `
-   font-size: 18px;
-   font-weight: 500;
-   text-decoration: none;
-   color: #3a3a3a;
-   &:hover {
-    color: #545454;
-   }
-   &:active {
-    color: red;
-   }
+
 `
