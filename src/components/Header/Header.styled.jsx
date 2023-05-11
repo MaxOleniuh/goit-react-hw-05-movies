@@ -1,5 +1,4 @@
 import s from "@emotion/styled";
-import { NavLink } from "react-router-dom";
 
 export const HeaderStyled = s.header `
     box-shadow: 0px 1px 6px 0px rgba(97,97,97,1);
