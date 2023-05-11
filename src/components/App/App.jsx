@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Routes, useParams } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { fetchTrendingMoviesApi, fetchKeyMoviesApi } from 'services/moviesApi';
 import { HomePage } from 'components/HomePage/HomePage';
