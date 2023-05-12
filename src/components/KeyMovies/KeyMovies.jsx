@@ -4,7 +4,7 @@ export const KeyMovies = ({ keyMovies }) => {
         <div>
         <ul>{keyMovies.map(keyMovie =>
             <li key={keyMovie.id} title={keyMovie.title}>
-            <Link to="/movies/id" onClick={() => console.log(1)}>{keyMovie.title}</Link>
+            <Link to={`/movies/${keyMovie.id}`} onClick={() => console.log(1)}>{keyMovie.title}</Link>
             </li>
             )}</ul>
             </div>

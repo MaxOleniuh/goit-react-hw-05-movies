@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { fetchTrendingMoviesApi, fetchKeyMoviesApi, fetchMovieDetailsApi } from 'services/moviesApi';
 import { HomePage } from 'components/HomePage/HomePage';
@@ -9,13 +9,13 @@ import { NotFound } from 'components/NotFound/NotFound';
 import { MoviesForm } from 'components/MoviesForm/MoviesForm';
 import { KeyMovies } from 'components/KeyMovies/KeyMovies';
 import { MovieDetails } from 'components/MovieDetails/MovieDetails';
+import { Cast } from 'components/Cast/Cast';
 
 export const App = () => {
   const [movies, setMovies] = useState([]);
   const [loader, setLoader] = useState(false);
   const [keyMovies, setKeyMovies] = useState([]);
   const [query, setQuery] = useState('');
-  // const [id, setId] = useState(0);
 
   const getMovies = async () => {
     setLoader(true);
@@ -52,23 +52,6 @@ export const App = () => {
     setKeyMovies([]);
   };
 
-  // useEffect(() => {
-  //   // const getMovieDetails = async () => {
-  //   //    setLoader(true);
-  //     // try {
-  //     //   const data = await fetchMovieDetailsApi(id).then(res => console.log(res))
-  //     //   setMovieDetails(data);
-  //     // } catch (error) {
-  //     //   console.log('ERROR', error);
-  //     // }
-  //     // finally {
-  //     //   setLoader(false);
-  //     // }
-  //   // };
-
-  //   fetchMovieDetailsApi(movieId).then(res => console.log(setMovieDetails(res)))
-  // }, [movieId]);
-
   return (
     <>
       <Header />
@@ -83,7 +66,9 @@ export const App = () => {
             </React.Fragment>
           }
         />
-          <Route path='movies/:id' element={<MovieDetails />} />
+        <Route path='movies/:id' element={<MovieDetails />}>
+          <Route path='cast' element={<Cast/>} />
+          </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
       {loader && <Loader />}

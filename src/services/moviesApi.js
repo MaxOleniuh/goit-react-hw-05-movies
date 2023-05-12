@@ -43,6 +43,19 @@ export const fetchMovieDetailsApi = async id => {
   }
 };
 
+export const fetchMovieCastApi = async id => {
+  try {
+    const response = await axios.get(`/movie/${id}/credits`, {
+      params: {
+        api_key: API_KEY,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 // adult: false;
 // backdrop_path: null;
 // genre_ids: [];
