@@ -37,7 +37,7 @@ export const fetchMovieDetailsApi = async id => {
         api_key: API_KEY,
       },
     });
-    return response.data.results;
+    return response.data;
   } catch (error) {
     console.log(error);
   }
@@ -57,4 +57,4 @@ export const fetchMovieDetailsApi = async id => {
 // video: false;
 // vote_average: 5;
 // vote_count: 1;
-//1027159
+//882569

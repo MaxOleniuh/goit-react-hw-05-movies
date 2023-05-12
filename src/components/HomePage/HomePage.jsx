@@ -5,8 +5,8 @@ export const HomePage = ({ movies, original_title }) => {
             <h2>Trending Today</h2>
         <ul>{movies.map(movie =>
                 <li key={movie.id} title={original_title}>
-            <Link to="/movies/movieId">{ movie.original_title ? movie.original_title : movie.name}</Link>
-            </li>
+            <Link to={`movies/${movie.id}`}>{ movie.original_title ? movie.original_title : movie.name}</Link>
+            </li>   
             )}</ul>
             </div>
   )

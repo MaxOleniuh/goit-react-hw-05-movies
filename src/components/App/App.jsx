@@ -15,8 +15,7 @@ export const App = () => {
   const [loader, setLoader] = useState(false);
   const [keyMovies, setKeyMovies] = useState([]);
   const [query, setQuery] = useState('');
-  const [movieDetails, setMovieDetails] = useState([]);
-  const [id, setId] = useState(0);
+  // const [id, setId] = useState(0);
 
   const getMovies = async () => {
     setLoader(true);
@@ -46,32 +45,29 @@ export const App = () => {
   };
   useEffect(() => {
     getKeyMovies(query);
-  }, []);
+  }, [query]);
 
   const setQueryValue = query => {
     setQuery(query);
     setKeyMovies([]);
   };
 
-   const getMovieDetails = async id => {
-    setLoader(true);
-    try {
-      const data = await fetchMovieDetailsApi(id);
-      setMovieDetails([...movieDetails, ...data]);
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setLoader(false);
-    }
-  };
-  useEffect(() => {
-    getMovieDetails(id);
-  });
+  // useEffect(() => {
+  //   // const getMovieDetails = async () => {
+  //   //    setLoader(true);
+  //     // try {
+  //     //   const data = await fetchMovieDetailsApi(id).then(res => console.log(res))
+  //     //   setMovieDetails(data);
+  //     // } catch (error) {
+  //     //   console.log('ERROR', error);
+  //     // }
+  //     // finally {
+  //     //   setLoader(false);
+  //     // }
+  //   // };
 
-  const setIdValue = id => {
-    setId(id);
-    setMovieDetails([]);
-  }
+  //   fetchMovieDetailsApi(movieId).then(res => console.log(setMovieDetails(res)))
+  // }, [movieId]);
 
   return (
     <>
@@ -79,15 +75,15 @@ export const App = () => {
       <Routes>
         <Route path="/" element={<HomePage movies={movies} />} />
         <Route
-          path="movies"
+          path="/movies"
           element={
             <React.Fragment>
-              <MoviesForm setQueryValue={setQueryValue} query={query} id={id} />
+              <MoviesForm setQueryValue={setQueryValue} query={query} />
               <KeyMovies keyMovies={keyMovies} />
             </React.Fragment>
           }
         />
-        <Route path="/movies/:movieId" element={<MovieDetails id={id} />} />
+          <Route path='movies/:id' element={<MovieDetails />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       {loader && <Loader />}
