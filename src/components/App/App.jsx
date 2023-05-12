@@ -1,7 +1,7 @@
 import React from 'react';
-import { Route, Routes, useParams } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { fetchTrendingMoviesApi, fetchKeyMoviesApi, fetchMovieDetailsApi } from 'services/moviesApi';
+import { fetchTrendingMoviesApi, fetchKeyMoviesApi } from 'services/moviesApi';
 import { HomePage } from 'components/HomePage/HomePage';
 import { Header } from 'components/Header/Header';
 import { Loader } from 'components/Loader/Loader';
@@ -10,6 +10,7 @@ import { MoviesForm } from 'components/MoviesForm/MoviesForm';
 import { KeyMovies } from 'components/KeyMovies/KeyMovies';
 import { MovieDetails } from 'components/MovieDetails/MovieDetails';
 import { Cast } from 'components/Cast/Cast';
+import { Reviews } from 'components/Reviews/Reviews';
 
 export const App = () => {
   const [movies, setMovies] = useState([]);
@@ -67,7 +68,8 @@ export const App = () => {
           }
         />
         <Route path='movies/:id' element={<MovieDetails />}>
-          <Route path='cast' element={<Cast/>} />
+          <Route path='cast' element={<Cast />} />
+          <Route path='reviews' element={<Reviews/>} />
           </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>

@@ -56,6 +56,19 @@ export const fetchMovieCastApi = async id => {
   }
 };
 
+export const fetchMovieReviewsApi = async id => {
+  try {
+    const response = await axios.get(`/movie/${id}/reviews`, {
+      params: {
+        api_key: API_KEY,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 // adult: false;
 // backdrop_path: null;
 // genre_ids: [];

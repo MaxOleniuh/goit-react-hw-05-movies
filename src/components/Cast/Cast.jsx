@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { fetchMovieCastApi } from "services/moviesApi";
-
+import { StyledImage } from "./Cast.styled";
+import noImage from '../../images/no-image.png'
 export const Cast = () => {
         const [movieCast, setMovieCast] = useState({ cast: [] });
       const [loader, setLoader] = useState(false);
@@ -22,11 +23,10 @@ export const Cast = () => {
     fetchMovieCast();
     }, [id]);
      console.log(movieCast.cast)
-     const poster = `https://image.tmdb.org/t/p/w500/${movieCast.cast.profile_path}`
     return (
         <ul>
-            {movieCast.cast.map(cast => <li>
-             <img src={`https://image.tmdb.org/t/p/w500/${cast.profile_path}`} alt="" />
+            {movieCast.cast.map(cast => <li key={cast.id}>
+             <StyledImage src={cast.profile_path !== null ? `https://image.tmdb.org/t/p/w500/${cast.profile_path}` : noImage} alt={cast.name} />
              <h1>{cast.name}</h1>
                 </li>)}
         </ul>
