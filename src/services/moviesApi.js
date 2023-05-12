@@ -29,3 +29,32 @@ export const fetchKeyMoviesApi = async query => {
     console.log(error);
   }
 };
+
+export const fetchMovieDetailsApi = async id => {
+  try {
+    const response = await axios.get(`/movie/${id}`, {
+      params: {
+        api_key: API_KEY,
+      },
+    });
+    return response.data.results;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+// adult: false;
+// backdrop_path: null;
+// genre_ids: [];
+// id: 493767;
+// original_language: 'en';
+// original_title: 'Cat';
+// overview: '';
+// popularity: 0.6;
+// poster_path: '/odGrK2wAxKbIIiKwOzrUOgOyozm.jpg';
+// release_date: '1998-01-01';
+// title: 'Cat';
+// video: false;
+// vote_average: 5;
+// vote_count: 1;
+//1027159

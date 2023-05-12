@@ -1,5 +1,8 @@
+import { Link } from "react-router-dom"
+
 export const MovieDetails = () => {
-    <div>
+    return (
+        <div>
         <aside>
             <img src="/" alt="/" />
         </aside>
@@ -8,6 +11,9 @@ export const MovieDetails = () => {
         <h3>Overview</h3>
         <p>(Movie desc)</p>
         <h4>Genres</h4>
-        <p>(Genres)</p>
-    </div>
+            <p>(Genres)</p>
+            <button><Link to="/movies">Go Back</Link></button>
+        </div>
+        
+    )
 }

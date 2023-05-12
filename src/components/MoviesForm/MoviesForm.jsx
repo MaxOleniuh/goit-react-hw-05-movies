@@ -5,7 +5,7 @@ export const MoviesForm = ({setQueryValue}) => {
     const navigate = useNavigate();
     const handleSubmit = e => {
         e.preventDefault();
-        setQueryValue(input);
+        setQueryValue(input);   
         navigate(`/movies/?query=${input}`);
 
     }
