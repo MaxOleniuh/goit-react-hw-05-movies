@@ -1,4 +1,5 @@
 import axios from 'axios';
+import PropTypes from 'prop-types';
 
 axios.defaults.baseURL = 'https://api.themoviedb.org/3';
 const API_KEY = '0899cb23c3aa3793d7d2c78c362ea8dc';
@@ -69,18 +70,10 @@ export const fetchMovieReviewsApi = async id => {
   }
 };
 
-// adult: false;
-// backdrop_path: null;
-// genre_ids: [];
-// id: 493767;
-// original_language: 'en';
-// original_title: 'Cat';
-// overview: '';
-// popularity: 0.6;
-// poster_path: '/odGrK2wAxKbIIiKwOzrUOgOyozm.jpg';
-// release_date: '1998-01-01';
-// title: 'Cat';
-// video: false;
-// vote_average: 5;
-// vote_count: 1;
-//882569
+fetchKeyMoviesApi.propTypes = {
+  query: PropTypes.string.isRequired,
+};
+
+fetchMovieReviewsApi.propTypes = {
+  id: PropTypes.number.isRequired,
+};

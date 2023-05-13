@@ -22,7 +22,6 @@ const Cast = () => {
     };
     fetchMovieCast();
     }, [id]);
-  console.log(movieCast)
     return (
         <ul>
             {movieCast.cast.map(cast => <li key={cast.id}>

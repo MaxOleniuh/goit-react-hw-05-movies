@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import PropTypes from 'prop-types';
 import { fetchMovieReviewsApi } from "services/moviesApi";
 
 const Reviews = () => {
@@ -21,7 +22,6 @@ const Reviews = () => {
         };
         fetchMovieReviews();
     }, [id]);
-    console.log(movieReviews.results)
     return (
         movieReviews.results > 0 ? <ul>{movieReviews.results.map(review => <li key={review.id}>
             <h2>Author:{review.author}</h2>
@@ -32,3 +32,7 @@ const Reviews = () => {
     )
 }
 export default Reviews;
+
+Reviews.propTypes = {
+  id: PropTypes.number.isRequired,
+};

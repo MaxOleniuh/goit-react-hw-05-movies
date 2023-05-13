@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { useEffect, useState, Suspense, lazy, } from 'react';
+import PropTypes from 'prop-types';
 import { Loader } from 'components/Loader/Loader';
 import { fetchTrendingMoviesApi, fetchKeyMoviesApi } from 'services/moviesApi';
 const HomePage = lazy(() => import('pages/HomePage/HomePage'));
@@ -11,7 +12,6 @@ const KeyMovies = lazy(() => import('pages/KeyMovies/KeyMovies'));
 const MovieDetails = lazy(() => import('pages/MovieDetails/MovieDetails'));
 const Cast = lazy(() => import ('pages/Cast/Cast'));
 const Reviews = lazy(() => import('pages/Reviews/Reviews'));
-
 
 export const App = () => {
   const [movies, setMovies] = useState([]);
@@ -79,3 +79,7 @@ export const App = () => {
     </>
   );
 };
+
+App.propTypes = {
+  query: PropTypes.string.isRequired,
+}
