@@ -1,7 +1,6 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { useEffect, useState, Suspense, lazy, } from 'react';
-import PropTypes from 'prop-types';
 import { Loader } from 'components/Loader/Loader';
 import { fetchTrendingMoviesApi, fetchKeyMoviesApi } from 'services/moviesApi';
 const HomePage = lazy(() => import('pages/HomePage/HomePage'));
@@ -79,7 +78,3 @@ export const App = () => {
     </>
   );
 };
-
-App.propTypes = {
-  query: PropTypes.string.isRequired,
-}
