@@ -13,7 +13,7 @@ const StyledLink = s(NavLink)`
     color: #ac0808;
    }
 `
-export const Header = () => {
+const Header = () => {
     return (
         <HeaderStyled>
             <UlStyled>
@@ -27,3 +27,4 @@ export const Header = () => {
         </HeaderStyled>
     )
 }
+export default Header;

@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { fetchMovieCastApi } from "services/moviesApi";
 import { StyledImage } from "./Cast.styled";
 import noImage from '../../images/no-image.png'
-export const Cast = () => {
+const Cast = () => {
         const [movieCast, setMovieCast] = useState({ cast: [] });
       const [loader, setLoader] = useState(false);
   const { id } = useParams();
@@ -22,12 +22,15 @@ export const Cast = () => {
     };
     fetchMovieCast();
     }, [id]);
+  console.log(movieCast)
     return (
         <ul>
             {movieCast.cast.map(cast => <li key={cast.id}>
              <StyledImage src={cast.profile_path !== null ? `https://image.tmdb.org/t/p/w500/${cast.profile_path}` : noImage} alt={cast.name} />
-             <h1>{cast.name}</h1>
+              <h3>{cast.name}</h3>
+              <p>Character: {cast.character}</p>
                 </li>)}
         </ul>
     )
 }
+export default Cast;

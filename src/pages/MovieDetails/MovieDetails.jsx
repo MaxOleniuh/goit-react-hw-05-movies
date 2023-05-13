@@ -4,7 +4,7 @@ import { fetchMovieDetailsApi } from 'services/moviesApi';
 import { ImageStyled } from './MovieDetails.styled';
 import { Loader } from 'components/Loader/Loader';
 
-export const MovieDetails = () => {
+const MovieDetails = () => {
     const [movieDetails, setMovieDetails] = useState([]);
       const [loader, setLoader] = useState(false);
   const { id } = useParams();
@@ -51,3 +51,4 @@ export const MovieDetails = () => {
         </div>
   );
 };
+export default MovieDetails;

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-export const KeyMovies = ({ keyMovies }) => {
+const KeyMovies = ({ keyMovies }) => {
     return (
         <div>
         <ul>{keyMovies.map(keyMovie =>
@@ -10,3 +10,4 @@ export const KeyMovies = ({ keyMovies }) => {
             </div>
   )
 }
+export default KeyMovies;

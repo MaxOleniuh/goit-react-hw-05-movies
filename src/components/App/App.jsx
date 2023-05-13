@@ -1,16 +1,17 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import { fetchTrendingMoviesApi, fetchKeyMoviesApi } from 'services/moviesApi';
-import { HomePage } from 'components/HomePage/HomePage';
-import { Header } from 'components/Header/Header';
+import { useEffect, useState, Suspense, lazy, } from 'react';
 import { Loader } from 'components/Loader/Loader';
-import { NotFound } from 'components/NotFound/NotFound';
-import { MoviesForm } from 'components/MoviesForm/MoviesForm';
-import { KeyMovies } from 'pages/KeyMovies/KeyMovies';
-import { MovieDetails } from 'components/MovieDetails/MovieDetails';
-import { Cast } from 'components/Cast/Cast';
-import { Reviews } from 'components/Reviews/Reviews';
+import { fetchTrendingMoviesApi, fetchKeyMoviesApi } from 'services/moviesApi';
+const HomePage = lazy(() => import('pages/HomePage/HomePage'));
+const Header =lazy(() => import('components/Header/Header'));
+const NotFound = lazy(() => import('components/NotFound/NotFound'));
+const MoviesForm =lazy(() => import ('components/MoviesForm/MoviesForm'))
+const KeyMovies = lazy(() => import('pages/KeyMovies/KeyMovies'));
+const MovieDetails = lazy(() => import('pages/MovieDetails/MovieDetails'));
+const Cast = lazy(() => import ('pages/Cast/Cast'));
+const Reviews = lazy(() => import('pages/Reviews/Reviews'));
+
 
 export const App = () => {
   const [movies, setMovies] = useState([]);
@@ -56,6 +57,7 @@ export const App = () => {
   return (
     <>
       <Header />
+      <Suspense fallback={<Loader />}>
       <Routes>
         <Route path="/" element={<HomePage movies={movies} />} />
         <Route
@@ -72,8 +74,8 @@ export const App = () => {
           <Route path='reviews' element={<Reviews/>} />
           </Route>
         <Route path="*" element={<NotFound />} />
-      </Routes>
-      {loader && <Loader />}
+        </Routes>
+        </Suspense>
     </>
   );
 };

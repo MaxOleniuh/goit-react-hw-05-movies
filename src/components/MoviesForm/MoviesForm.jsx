@@ -1,6 +1,6 @@
 import { useState } from "react";
 import {useNavigate } from 'react-router-dom';
-export const MoviesForm = ({setQueryValue}) => {
+const MoviesForm = ({setQueryValue}) => {
     const [input, setInput] = useState('');
     const navigate = useNavigate();
     const handleSubmit = e => {
@@ -16,3 +16,4 @@ export const MoviesForm = ({setQueryValue}) => {
         </form>
     )
 }
+export default MoviesForm;

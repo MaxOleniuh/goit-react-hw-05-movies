@@ -1,5 +1,5 @@
 import { LinkStyled } from "./NotFound.styled"
-export const NotFound = () => {
+const NotFound = () => {
     return (
         <div>
         <h2>Page not found</h2>
@@ -9,3 +9,4 @@ export const NotFound = () => {
             </div>
     )
 }
+export default NotFound;

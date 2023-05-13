@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-export const HomePage = ({ movies, original_title }) => {
+const HomePage = ({ movies, original_title }) => {
     return (
         <div>
             <h2>Trending Today</h2>
@@ -11,3 +11,4 @@ export const HomePage = ({ movies, original_title }) => {
             </div>
   )
 }
+export default HomePage;
