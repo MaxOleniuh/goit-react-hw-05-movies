@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { useEffect, useState, Suspense, lazy, } from 'react';
 import { Loader } from 'components/Loader/Loader';
@@ -18,22 +18,23 @@ export const App = () => {
   const [keyMovies, setKeyMovies] = useState([]);
   const [query, setQuery] = useState('');
 
-  const getMovies = async () => {
+const getMovies = useCallback(async () => {
     setLoader(true);
     try {
-      const data = await fetchTrendingMoviesApi();
-      setMovies([...movies, ...data]);
+        const data = await fetchTrendingMoviesApi();
+        setMovies([...movies, ...data]);
     } catch (error) {
-      console.log(error);
+        console.log(error);
     } finally {
-      setLoader(false);
+        setLoader(false);
     }
-  };
-  useEffect(() => {
-    getMovies();
-  }, []);
+}, []);
 
-  const getKeyMovies = async query => {
+useEffect(() => {
+    getMovies();
+}, [getMovies]);
+  
+  const getKeyMovies = useCallback(async (query) => {
     setLoader(true);
     try {
       const data = await fetchKeyMoviesApi(query);
@@ -43,10 +44,11 @@ export const App = () => {
     } finally {
       setLoader(false);
     }
-  };
+  }, []);
+
   useEffect(() => {
     getKeyMovies(query);
-  }, [query]);
+  }, [getKeyMovies, query]);
 
   const setQueryValue = query => {
     setQuery(query);
@@ -56,7 +58,7 @@ export const App = () => {
   return (
     <>
       <Header />
-      <Suspense fallback={<Loader />}>
+      <Suspense fallback={loader && <Loader />}>
       <Routes>
         <Route path="/" element={<HomePage movies={movies} />} />
         <Route
