@@ -28,6 +28,7 @@ const getMovies = useCallback(async () => {
     } finally {
         setLoader(false);
     }
+// eslint-disable-next-line react-hooks/exhaustive-deps
 }, []);
 
 useEffect(() => {
@@ -44,6 +45,7 @@ useEffect(() => {
     } finally {
       setLoader(false);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
