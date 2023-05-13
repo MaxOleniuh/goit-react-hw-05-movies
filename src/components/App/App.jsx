@@ -7,7 +7,7 @@ import { Header } from 'components/Header/Header';
 import { Loader } from 'components/Loader/Loader';
 import { NotFound } from 'components/NotFound/NotFound';
 import { MoviesForm } from 'components/MoviesForm/MoviesForm';
-import { KeyMovies } from 'components/KeyMovies/KeyMovies';
+import { KeyMovies } from 'pages/KeyMovies/KeyMovies';
 import { MovieDetails } from 'components/MovieDetails/MovieDetails';
 import { Cast } from 'components/Cast/Cast';
 import { Reviews } from 'components/Reviews/Reviews';

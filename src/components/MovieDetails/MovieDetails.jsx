@@ -38,7 +38,7 @@ export const MovieDetails = () => {
       <p>User scrore: {Math.round(movieDetails.vote_average*10)}%</p>
       <h3>Overview</h3>
       <p>{movieDetails.overview}</p>
-      {/* <h4>Genres</h4>{movieDetails.genres.map(genre => <p key={genre.id}>{genre.name}</p>)}   */}
+      <h4>Genres</h4>{ movieDetails.genres && movieDetails.genres.map(genre => <p key={genre.id}>{genre.name}</p>)}  
       </div>
             <div>
                 <h5>Additional information</h5>
