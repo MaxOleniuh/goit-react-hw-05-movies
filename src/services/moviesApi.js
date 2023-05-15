@@ -1,6 +1,4 @@
 import axios from 'axios';
-import PropTypes from 'prop-types';
-
 axios.defaults.baseURL = 'https://api.themoviedb.org/3';
 const API_KEY = '0899cb23c3aa3793d7d2c78c362ea8dc';
 
@@ -68,12 +66,4 @@ export const fetchMovieReviewsApi = async id => {
   } catch (error) {
     console.log(error);
   }
-};
-
-fetchKeyMoviesApi.propTypes = {
-  query: PropTypes.string.isRequired,
-};
-
-fetchMovieReviewsApi.propTypes = {
-  id: PropTypes.number.isRequired,
 };

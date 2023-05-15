@@ -1,36 +1,40 @@
 import { useEffect, useState } from 'react';
-import { Link, useParams, Outlet } from 'react-router-dom';
+import { Link, useParams, Outlet, useNavigate } from 'react-router-dom';
 import { fetchMovieDetailsApi } from 'services/moviesApi';
 import { ImageStyled } from './MovieDetails.styled';
 import { Loader } from 'components/Loader/Loader';
 
 const MovieDetails = () => {
+    const navigate = useNavigate();
+  const handleClick = () => {
+    navigate('/movies', { state: { query: '' } });
+  };
     const [movieDetails, setMovieDetails] = useState([]);
       const [loader, setLoader] = useState(false);
   const { id } = useParams();
     useEffect(() => {
-        const fetchMovieDetails = async () => {
-            setLoader(true);
-      try {
-        const data = await fetchMovieDetailsApi(id);
-        setMovieDetails(data);
-      } catch (error) {
-        console.log('Error fetching movie details:', error);
-            }
-      finally {
+      const fetchMovieDetails = async () => {
+        setLoader(true);
+        try {
+          const data = await fetchMovieDetailsApi(id);
+          setMovieDetails(data);
+        } catch (error) {
+          console.log('Error fetching movie details:', error);
+        }
+        finally {
           setLoader(false)
-            }
+        }
     };
     fetchMovieDetails();
-  }, [id]);
+    }, [id]);
+
+ 
   const poster = `https://image.tmdb.org/t/p/w500/${movieDetails.poster_path}`;
     return (
         <div>
             {loader && <Loader />}
     <div key={id}>
-      <button>
-        <Link to="/">Go Back</Link>
-      </button>
+      <button onClick={handleClick}>Go back</button>
       <aside>
         <ImageStyled src={poster} alt={movieDetails.title} />
       </aside>
