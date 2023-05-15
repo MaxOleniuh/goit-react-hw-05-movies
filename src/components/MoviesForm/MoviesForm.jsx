@@ -1,23 +1,9 @@
-import { useState } from "react";
-import {useNavigate } from 'react-router-dom';
-const MoviesForm = () => {
-    const [input, setInput] = useState('');
-    const [query, setQuery] = useState('');
-    const [keyMovies, setKeyMovies] = useState([]);
-    const navigate = useNavigate();
-    const handleSubmit = e => {
-        e.preventDefault();
-        setQueryValue(input);   
-        navigate(`/movies/?query=${input}`);
-    }   
-      const setQueryValue = () => {
-          setQuery(query);
-          setKeyMovies([]);
-  };
+const MoviesForm = ({changeFilter, query, onHandleSubmit}) => {
+    
     return (
-        <form action="submit" onSubmit={handleSubmit}>
-            <input type="text" placeholder="Search for a movie" onChange={(e) => setInput(e.target.value)} value={input}/>
-            {input && <button>Search</button>}
+        <form onSubmit={onHandleSubmit}>
+            <input type="text" placeholder="Search for a movie" onChange={(e) => changeFilter(e)} value={query} />
+          { query && <button type="submit">Search</button>}
         </form>
     )
 }

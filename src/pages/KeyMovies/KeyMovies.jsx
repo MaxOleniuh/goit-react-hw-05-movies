@@ -1,38 +1,40 @@
-import { useCallback, useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Link, useLocation, useSearchParams } from 'react-router-dom';
 import { fetchKeyMoviesApi } from 'services/moviesApi';
+import MoviesForm from 'components/MoviesForm/MoviesForm';
+
 const KeyMovies = () => {
     const [keyMovies, setKeyMovies] = useState([]);
-    const [loader, setLoader] = useState(false);
     const [query, setQuery] = useState('');
-  const getKeyMovies = useCallback(async query => {
-    loader && setLoader(true);
-    try {
-        const data = await fetchKeyMoviesApi(query);
-        setKeyMovies([...keyMovies, ...data]);
+    const location = useLocation();
+  const [searchParams, setSearchParams] = useSearchParams();
+  useEffect(() => {
+    const query = searchParams.get('query') ?? '';
+        if (!query) return;
+        try {
+        fetchKeyMoviesApi(query).then(res => setKeyMovies(res))
     } catch (error) {
       console.log(error);
-    } finally {
-      setLoader(false);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    } 
+  }, [query, searchParams]);
 
-  useEffect(() => {
-      getKeyMovies(query);
-  }, [getKeyMovies, query]);
-
-    const setQueryValue = query => {
-        setQuery(query);
-    setKeyMovies([]);
-    };
+    const changeFilter = e => {
+        console.log(e.currentTarget.value);
+        setQuery(e.currentTarget.value)
+  }
+   
+  const onHandleSubmit = e => {
+    e.preventDefault();
+    setSearchParams(query !== '' ? {query} : {});
+  }
     
   return (
-    <div>
-      <ul>
+      <div>
+          <MoviesForm changeFilter={changeFilter} query={query} onHandleSubmit={onHandleSubmit} />
+      <ul> 
         {keyMovies.map(keyMovie => (
           <li key={keyMovie.id} title={keyMovie.title}>
-            <Link to={`/movies/${keyMovie.id}`} onClick={() => console.log(1)}>
+            <Link to={`/movies/${keyMovie.id}`} state={{from: location}}>
               {keyMovie.title}
             </Link>
           </li>
