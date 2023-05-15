@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom"
 import { fetchTrendingMoviesApi } from "services/moviesApi";
+import PropTypes from 'prop-types';
 const HomePage = ({ original_title, setLoader }) => {
     const [trendMovies, setTrendMovies] = useState([]);
     useEffect(() => {
@@ -25,3 +26,8 @@ const HomePage = ({ original_title, setLoader }) => {
   )
 }
 export default HomePage;
+
+HomePage.propTypes = {
+    original_title: PropTypes.string.isRequired,
+    setLoader: PropTypes.func.isRequired,
+}
