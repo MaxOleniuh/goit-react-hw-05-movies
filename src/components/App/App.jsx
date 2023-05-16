@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { useState, Suspense, lazy, } from 'react';
+import { Suspense, lazy } from 'react';
 import { Loader } from 'components/Loader/Loader';
 const HomePage = lazy(() => import('pages/HomePage/HomePage'));
 const Header =lazy(() => import('components/Header/Header'));
@@ -11,13 +11,12 @@ const Cast = lazy(() => import ('components/Cast/Cast'));
 const Reviews = lazy(() => import('components/Reviews/Reviews'));
 
 export const App = () => {
-  const [loader, setLoader] = useState(false); 
   return (
     <>
       <Header />
-      <Suspense fallback={loader && <Loader />}>
+      <Suspense fallback={<Loader />}>
       <Routes>
-        <Route path="/" element={<HomePage setLoader={setLoader} />} />
+        <Route path="/" element={<HomePage />} />
         <Route path="/movies" element={<KeyMovies />}/>
         <Route path='movies/:id' element={<MovieDetails />}>
           <Route path='cast' element={<Cast />} />

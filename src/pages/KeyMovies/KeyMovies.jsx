@@ -19,7 +19,6 @@ const KeyMovies = () => {
   }, [query, searchParams]);
 
     const changeFilter = e => {
-        console.log(e.currentTarget.value);
         setQuery(e.currentTarget.value)
   }
    
