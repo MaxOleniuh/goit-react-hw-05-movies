@@ -4,7 +4,7 @@ const NotFound = () => {
         <div>
         <h2>Page not found</h2>
             <button type="button"> 
-                <LinkStyled href="/">Go Back</LinkStyled>
+                <LinkStyled href="/goit-react-hw-05-movies">Go Back</LinkStyled>
             </button>
             </div>
     )
