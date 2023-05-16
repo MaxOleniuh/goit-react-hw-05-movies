@@ -6,7 +6,7 @@ import { Loader } from 'components/Loader/Loader';
 import { BackLink } from 'components/BackLink/BackLink';
 const MovieDetails = () => {
   const location = useLocation();
-  const backLinkHref = location.state?.from ?? '/goit-react-hw-05-movies';
+  const backLinkHref = location.state?.from ?? '/';
   const [movieDetails, setMovieDetails] = useState([]);
   const [loader, setLoader] = useState(false);
   const { id } = useParams();
